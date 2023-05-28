@@ -27,8 +27,8 @@
         "link": "https://www.ratemyprofessors.com/professor/2557672"
     },
     "Maryse Dagenais": {
-        "rating": 4.8,
-        "reviews": 3,
+        "rating": 4.6,
+        "reviews": 4,
         "link": "https://www.ratemyprofessors.com/professor/2606586"
     },
     "Marie-Claire Rioux": {
@@ -213,7 +213,11 @@
         "reviews": 6,
         "link": "https://www.ratemyprofessors.com/professor/2498168"
     },
-    "Philippe Delage": "DNE",
+    "Philippe Delage": {
+        "rating": 4.8,
+        "reviews": 3,
+        "link": "https://www.ratemyprofessors.com/professor/2765728"
+    },
     "Kieran Hackett": {
         "rating": 2.8,
         "reviews": 18,
@@ -287,8 +291,8 @@
     },
     "Gregory Mulcair": "DNE",
     "Michael Dugdale": {
-        "rating": 3,
-        "reviews": 25,
+        "rating": 2.8,
+        "reviews": 24,
         "link": "https://www.ratemyprofessors.com/professor/2497879"
     },
     "Cindy Hunzinger": {
@@ -297,8 +301,8 @@
         "link": "https://www.ratemyprofessors.com/professor/2224795"
     },
     "Karim Jaffer": {
-        "rating": 3.3,
-        "reviews": 3,
+        "rating": 3,
+        "reviews": 4,
         "link": "https://www.ratemyprofessors.com/professor/2560576"
     },
     "Robbyn Seller": {
@@ -313,7 +317,7 @@
     },
     "Dario Guiducci": {
         "rating": 5,
-        "reviews": 12,
+        "reviews": 13,
         "link": "https://www.ratemyprofessors.com/professor/2385814"
     },
     "Sabrina Gloux": {
@@ -343,7 +347,11 @@
         "link": "https://www.ratemyprofessors.com/professor/2501435"
     },
     "Tara Walker": "DNE",
-    "Edward Lyon": "DNE",
+    "Edward Lyon": {
+        "rating": 5,
+        "reviews": 6,
+        "link": "https://www.ratemyprofessors.com/professor/2755852"
+    },
     "Sorin Voinea": "DNE",
     "Magdy Meimari": {
         "rating": 2.3,
@@ -526,8 +534,8 @@
         "link": "https://www.ratemyprofessors.com/professor/2626003"
     },
     "Julien Laflamme": {
-        "rating": 4.4,
-        "reviews": 7,
+        "rating": 4.5,
+        "reviews": 8,
         "link": "https://www.ratemyprofessors.com/professor/2695742"
     },
     "Nicola Hope": {
@@ -559,8 +567,8 @@
     "Maude Riverin": "DNE",
     "Jessica L\u00e9g\u00e8re": "DNE",
     "Jean Sotiron": {
-        "rating": 2.9,
-        "reviews": 7,
+        "rating": 3.3,
+        "reviews": 8,
         "link": "https://www.ratemyprofessors.com/professor/2498736"
     },
     "Charbel Nassif": {
@@ -618,7 +626,7 @@
     },
     "Jennifer Rocchi": {
         "rating": 5,
-        "reviews": 14,
+        "reviews": 15,
         "link": "https://www.ratemyprofessors.com/professor/2498337"
     },
     "Julie Caouette": {
@@ -786,8 +794,8 @@
         "link": "https://www.ratemyprofessors.com/professor/2497890"
     },
     "Spaska Siderova": {
-        "rating": 4.9,
-        "reviews": 10,
+        "rating": 5,
+        "reviews": 11,
         "link": "https://www.ratemyprofessors.com/professor/2498060"
     },
     "Angela Vella": {
@@ -815,11 +823,15 @@
     "Elisha Conway": "DNE",
     "Ferenc Balogh": "DNE",
     "Derek Maisonville": {
-        "rating": 3.5,
-        "reviews": 2,
-        "link": "https://www.ratemyprofessors.com/professor/2497898"
+        "rating": 4.5,
+        "reviews": 4,
+        "link": "https://www.ratemyprofessors.com/professor/1860735"
     },
-    "Nicole Hoop": "DNE",
+    "Nicole Hoop": {
+        "rating": 4.8,
+        "reviews": 3,
+        "link": "https://www.ratemyprofessors.com/professor/2769573"
+    },
     "Elaine Pare": {
         "rating": 4.3,
         "reviews": 14,
@@ -903,8 +915,8 @@
         "link": "https://www.ratemyprofessors.com/professor/2503109"
     },
     "Rebecca Sultana": {
-        "rating": 1.4,
-        "reviews": 13,
+        "rating": 1.6,
+        "reviews": 14,
         "link": "https://www.ratemyprofessors.com/professor/2502533"
     },
     "William McClelland": {
@@ -954,7 +966,7 @@
     },
     "Yael Margalit": {
         "rating": 2.9,
-        "reviews": 12,
+        "reviews": 13,
         "link": "https://www.ratemyprofessors.com/professor/2616848"
     },
     "Neil Briffett": {
@@ -1024,8 +1036,8 @@
         "link": "https://www.ratemyprofessors.com/professor/2497950"
     },
     "Louiza Aissani": {
-        "rating": 4.5,
-        "reviews": 2,
+        "rating": 4.8,
+        "reviews": 3,
         "link": "https://www.ratemyprofessors.com/professor/2606461"
     },
     "Xiao Xu": "DNE",
@@ -1039,15 +1051,11 @@
         "reviews": 0,
         "link": "https://www.ratemyprofessors.com/professor/2873417"
     },
-    "Isabelle Ste-Marie": {
-        "rating": 5,
-        "reviews": 1,
-        "link": "https://www.ratemyprofessors.com/professor/2754991"
-    },
+    "Isabelle Ste-Marie": "DNE",
     "Ariane Bessette": "DNE",
     "David Boutin": {
-        "rating": 3.8,
-        "reviews": 7,
+        "rating": 3.9,
+        "reviews": 8,
         "link": "https://www.ratemyprofessors.com/professor/1629541"
     },
     "Frederic Laganiere": {
@@ -1097,8 +1105,8 @@
         "link": "https://www.ratemyprofessors.com/professor/2664496"
     },
     "Paolo Stefano": {
-        "rating": 4.8,
-        "reviews": 6,
+        "rating": 4.9,
+        "reviews": 7,
         "link": "https://www.ratemyprofessors.com/professor/2558365"
     },
     "Mario Bellemare": {
@@ -1137,8 +1145,8 @@
         "link": "https://www.ratemyprofessors.com/professor/1858718"
     },
     "Hicham Tiflati": {
-        "rating": 4.5,
-        "reviews": 13,
+        "rating": 4.6,
+        "reviews": 15,
         "link": "https://www.ratemyprofessors.com/professor/2600663"
     },
     "Deborah Lunny": {
@@ -1182,11 +1190,7 @@
         "link": "https://www.ratemyprofessors.com/professor/2701338"
     },
     "Candis Steenbergen": "DNE",
-    "Steven Sych": {
-        "rating": 4.8,
-        "reviews": 3,
-        "link": "https://www.ratemyprofessors.com/professor/2763462"
-    },
+    "Steven Sych": "DNE",
     "Eileen Kerwin": {
         "rating": 3.5,
         "reviews": 11,
@@ -1203,8 +1207,8 @@
         "link": "https://www.ratemyprofessors.com/professor/1974605"
     },
     "Scott Armstrong": {
-        "rating": 4.6,
-        "reviews": 13,
+        "rating": 4.8,
+        "reviews": 14,
         "link": "https://www.ratemyprofessors.com/professor/2498333"
     },
     "Joel Fitleberg": {

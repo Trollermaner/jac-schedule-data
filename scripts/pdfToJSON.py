@@ -537,9 +537,9 @@ def parseClassData(pdf): #returns array: index[0] = JSON, index[1] = list of tea
     cleanTextArray = splitLine(text, True) #array
     result = checkLine(cleanTextArray)
     product = result[0]
-    teacherList = str(result[1])
+    teacherList = result[1]
 
-    return [json.dumps(product, indent=4), teacherList, text]
+    return [product, teacherList, text]
 
 if False:
     with open("./dataCollector/results/text.txt", "w") as textFile:

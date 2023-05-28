@@ -213,11 +213,7 @@
         "reviews": 6,
         "link": "https://www.ratemyprofessors.com/professor/2498168"
     },
-    "Philippe Delage": {
-        "rating": 4.8,
-        "reviews": 3,
-        "link": "https://www.ratemyprofessors.com/professor/2765728"
-    },
+    "Philippe Delage": "DNE",
     "Kieran Hackett": {
         "rating": 2.8,
         "reviews": 18,
@@ -343,7 +339,11 @@
         "link": "https://www.ratemyprofessors.com/professor/2501435"
     },
     "Tara Walker": "DNE",
-    "Edward Lyon": "DNE",
+    "Edward Lyon": {
+        "rating": 5,
+        "reviews": 6,
+        "link": "https://www.ratemyprofessors.com/professor/2755852"
+    },
     "Sorin Voinea": "DNE",
     "Magdy Meimari": {
         "rating": 2.3,
@@ -734,7 +734,11 @@
         "reviews": 15,
         "link": "https://www.ratemyprofessors.com/professor/2587381"
     },
-    "Tania Zampini": "DNE",
+    "Tania Zampini": {
+        "rating": 2.8,
+        "reviews": 4,
+        "link": "https://www.ratemyprofessors.com/professor/2765270"
+    },
     "Jennifer Fisher": {
         "rating": 4.5,
         "reviews": 2,
@@ -1035,9 +1039,9 @@
         "link": "https://www.ratemyprofessors.com/professor/2582829"
     },
     "Shahrouz Pezeshki": {
-        "rating": 4.5,
-        "reviews": 5,
-        "link": "https://www.ratemyprofessors.com/professor/2760459"
+        "rating": 0,
+        "reviews": 0,
+        "link": "https://www.ratemyprofessors.com/professor/2873417"
     },
     "Isabelle Ste-Marie": {
         "rating": 5,

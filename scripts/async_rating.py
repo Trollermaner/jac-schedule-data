@@ -1,6 +1,7 @@
 import asyncio
 import aiohttp
 import json
+from time import perf_counter
 
 class ratingClass:
     
@@ -26,7 +27,7 @@ async def getRating(s, id):
 
     async with s.post('https://www.ratemyprofessors.com/graphql', headers=headers, json=json_data) as r:
         if r.status != 200:
-            r.raise_for_status()
+            print(id)
 
         return await r.json()
 
@@ -53,7 +54,7 @@ async def getRequest(s, teacher, school_id):
 
     async with s.post('https://www.ratemyprofessors.com/graphql', headers=headers, json=json_data) as r:
         if r.status != 200:
-            r.raise_for_status()
+            print(teacher)
         return await r.json()
 
 def teacherMatch(first_name, last_name, school_id, node):
@@ -73,24 +74,31 @@ def teacherMatch(first_name, last_name, school_id, node):
     return False
 
 
-async def getTasks(session, school_id):
+async def getTasks(session, school_id, teacherList):
     tasks = []
-    teacherList = ['Katherine Pagnucco', 'Christian Levesque', 'Patricia Foam', 'Jean-Paul Parkhill', 'Ruth Gordon', 'Simon Daoust', 'Christopher Roretz', 'Maryse Dagenais', 'Marie-Claire Rioux', 'Roxane Millette', 'Edward Hudson', 'Suzanne Black', 'Murray Bronet', 'Tian-Yun Wang', 'Jean-Michel Régimbal', 'Michael Lautman', 'Andrew Brown', 'Nicole Babich-Morin', 'Michal Goren', 'David Fenwick', 'Tania Peres', 'Sean Hughes', 'Rekha Iyer', 'Amélie Bérubé', 'Antonio Nicodemo', 'Sarah Worndle', 'Richard Léveillé', 'Rhoda Sollazzo', 'Antoine Herlin', 'Abdulrahman Karouma', 'Cameron Connor', 'Daniel Gatien', 'Ethan Mombourquette', 'Frank Vasco', 'Ivo Pendev', 'Jason Lucier', 'Kevin Flood', 'Kenneth Gerber', 'Mohammad Bardestani', 'Moushira Guindi', 'William Boshuck', 'Yuliya Klochko', 'Yu Zhao', 'Christophe Morris', 'Jordan Hill', 'Richard Masters', 'Richard Squire', 'Faranak Mokhtarian', 'Luiz Takei', 'Philippe Chaput', 'Philippe Delage', 'Kieran Hackett', 'Cynthia Giroux', 'Maria Mastorakos', 'Hubert Camirand', 'Christopher Tromp', 'Chris Larnder', 'Nanouk Pare', 'Etienne Portelance', 'Omar Melhem', 'Brian Larade', 'Paul Bazelais', 'Caroline Viger', 'Mandana Asl', 'Michael Richard', 'Bruce Tracy', 'Gregory Mulcair', 'Michael Dugdale', 'Cindy Hunzinger', 'Karim Jaffer', 'Robbyn Seller', 'Sarah Bean', 'Dario Guiducci', 'Sabrina Gloux', 'Laura Ricotta', 'James Kane', 'Sonia Savvidis', 'Gordon Spicer', 'Herman Tumurcuoglu', 'Tara Walker', 'Edward Lyon', 'Sorin Voinea', 'Magdy Meimari', 'David Koos', 'Kevin Williams', 'Steven Landry', 'Eugenia Bouras', 'John Serrati', 'Bertram Somers', 'Kenneth Matziorinis', 'Medoune Seck', 'David Desjardins', 'Mathieu Provencher', 'Avinash Samboo', 'Stephen Bryce', 'John Buskard', 'Jessica Burpee', 'Julie Podmore', 'Jessica Vandervort', 'Julien Charest', 'Catherine Humes', 'Andre Leblanc', 'Nicholas Tosaj', 'William Russell', 'Emmanuelle Carle', 'Felix Racine', 'Fiona Tomaszewski', 'Alexandre Panassenko', 'Audrey Baker', 'Andrea Spencer', 'Giulia Chiappetta', 'Gabriel Herta', 'Olivier Dubois', 'Sergio Fratarcangeli', 'Shery Mikhail', 'Karen Solsten', 'Derrick Chung', 'Alice McLeod', 'Caroline Lefebvre', 'Ibrahim Balushi', 'Vicki Beaupré-Odorico', 'Ryan Martin', 'Julien Laflamme', 'Nicola Hope', 'Jenny Cockburn', 'Onur Kapdan', 'Benedetto Angeloni', 'Elise Boer', 'Laura Shillington', 'Maude Riverin', 'Jessica Légère', 'Jean Sotiron', 'Charbel Nassif', 'Luba Serge', 'Stephanie Claude', 'Roger MacLean', 'Christophe Chowanietz', 'Kristin Anderson', 'Afroditi Panagopoulos', 'Vanessa Harrar', 'Brandon Daniel-Hughes', 'Luigi Pasto', 'Michelle Kwas', 'Steven Strudensky', 'Michael Foy', 'Jennifer Rocchi', 'Julie Caouette', 'Jacqueline Aubie', 'James Katz', 'Linda Knight', 'Julie Hanck', 'Peter Bender', 'Grace Lin', 'Wendi Hadd', 'Lisa Allen', 'Richard Element', 'Roksana Nazneen', 'Glenn Howlett', 'Jamie Macaulay', 'Monika Napier', 'Jamie Goodyear', 'Jennifer Lupien', 'Meghan Price', 'Sheila Nadimi', 'Gordana Mijovic', 'Avery Larose', 'Christina Oltmann', 'Jennifer McDermott', 'David Austin', 'Eric Laferriere', 'Maria Mamfredis', 'Denise Fidia', 'Nazareth Arabaghian', 'Brian Peters', 'Stephanie Myers', 'Tania Zampini', 'Jennifer Fisher', 'Pierre Dussol', 'Anne Golden', 'Frédérick Belzile', 'Yudi Sewraj', 'Nicole Forrest', 'Bettina Hoffmann', 'Daniel Schorr', 'Merdad Hage', 'Sarah Venart', 'Sara Villa', 'Thomas Abray', 'Daniel Rondeau', 'Clea Notar', 'Spaska Siderova', 'Angela Vella', 'Xiaoyang Zhu', 'Julie Gagnon', 'Paula Briones', 'Ryan Young', 'Edouard Fontaine', 'Elisha Conway', 'Ferenc Balogh', 'Derek Maisonville', 'Nicole Hoop', 'Elaine Pare', 'Wendy Eberle', 'Geoffrey Cook', 'Gediminas Lerner', 'Fiona Stewart', "Adil D'Sousa", 'Andrew Brock', 'Claire Russell', 'Finn Purcell', 'Mark Beers', 'Mathieu Bouchard', 'Brock Pennington', 'Robin Durnford', 'Lisa Szabo-Jones', 'Bruce Gilchrist', 'Ryan Maydan', 'Raymond Filipavicius', 'Kirsty Campbell', 'Rebecca Sultana', 'William McClelland', 'Valerie Bherer', 'Yann Geoffroy', 'Carousel Calvo', 'Jesse Bouvier', 'Kathleen MacNamara', 'Anna Sigg', 'Karen Lee', 'Lawrence Szigeti', 'Yael Margalit', 'Neil Briffett', 'Anna Lepine', 'Michele Trepanier', 'Jennifer Beauvais', 'Patrick Burger', 'David Bourgeois', 'Darren Millar', 'Ragne Raceviciute', 'Abraham Sosnowicz', 'Patricia Gordon', 'Marianne Campeau-Devlin', 'Proshat Hemmati', 'Christine Tellier', 'Claude Nicou', 'Louiza Aissani', 'Xiao Xu', 'Jean Beausoleil', 'Shahrouz Pezeshki', 'Isabelle Ste-Marie', 'Ariane Bessette', 'David Boutin', 'Frederic Laganiere', 'Alexandre Limoges', 'Sophie Prince', 'Marie-Claude Barrette', 'Michelle Legare', 'Catherine Greffard', 'Robert Inch', 'Maria Popica', 'Sylvie Mariage', 'Anna Woodrow', 'Paolo Stefano', 'Mario Bellemare', 'Kelly McKinney', 'Violaine Ares', 'Albert Sanchez', 'Johanna Okker', 'Mark McGuire', 'Alan Weiss', 'Hicham Tiflati', 'Deborah Lunny', 'Sujata Ghosh', 'Azra Rashid', 'Meredith Browne', 'Kathleen Sherwood', 'John Hamer', 'Roy Fu', 'Ful Massimi', 'Candis Steenbergen', 'Steven Sych', 'Eileen Kerwin', 'Sarwat Viqar', 'Thomas Young', 'Scott Armstrong', 'Joel Fitleberg', 'Sasan Ghinani', 'Monica Healey', 'Celine Homsy', 'Bronwen Lloyd-Hughes', 'Noémie Marin', 'Valerie Matthew', 'Brianna Miller', 'Laura Morrison', 'Andrew Plimer', 'Chelsea Privée', 'Geneviève Raymond-Parent', 'John Roberts', 'Jane Shaw', 'Robert Wall', 'Mikhail Zimerman', 'David Hill', 'Laura Pfeiffer', 'Jana Simandl', 'Giorgio Bartolucci', 'Manijeh Ali', 'Phoebe Jackson', 'Belinda Gare', 'Veronika Horlik']
     teacherData = {}
     goodTeacher = []
 
     for teacher in teacherList:
         task = asyncio.create_task(getRequest(session, teacher, school_id))
         tasks.append(task)
+
     response = await asyncio.gather(*tasks)
+
     num = 0
+
     for data in response:
         teacher = teacherList[num]
+
         if len(data["data"]["search"]["teachers"]["edges"]) != 0:
             teacher_node = data["data"]["search"]["teachers"]["edges"][0]["node"]
             teacherName = teacher.split(" ")
             first_name = teacherName[0]
-            last_name = teacherName[1]
+            try:
+                last_name = teacherName[1]
+            except:
+                print(f"teacher: {teacher}")
+                last_name = "troll"
 
             if teacherMatch(first_name, last_name, school_id, teacher_node):
 
@@ -101,6 +109,7 @@ async def getTasks(session, school_id):
                 goodTeacher.append([teacher, id])
 
                 teacherData[teacher] = teacherDict
+
             else:
                 teacherData[teacher] = "DNE"
 
@@ -110,6 +119,7 @@ async def getTasks(session, school_id):
         num +=1
     
     tasks = []
+
     for data in goodTeacher:
         id = data[1]
         task = asyncio.create_task(getRating(session, id)) 
@@ -118,6 +128,7 @@ async def getTasks(session, school_id):
     response = await asyncio.gather(*tasks)
 
     num = 0
+
     for data in goodTeacher:
         teacher = data[0]
         r = response[num]
@@ -129,12 +140,8 @@ async def getTasks(session, school_id):
 
     return teacherData
 
-async def main(school_id):
+async def asyncGetRating(school_id, teacherList):
     async with aiohttp.ClientSession(connector=aiohttp.TCPConnector(verify_ssl=False)) as session:
-        response = await getTasks(session, school_id)
-    return response
+        response = await getTasks(session, school_id, teacherList)
 
-if __name__ == '__main__':
-    response = asyncio.run(main(school_id = "U2Nob29sLTEyMDUw"))
-    with open("./dataCollector/results/asyncio.json", "w") as jsonFile:
-        jsonFile.write(json.dumps(response, indent = 4))
+    return response
