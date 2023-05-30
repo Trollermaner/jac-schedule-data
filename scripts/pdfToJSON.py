@@ -410,7 +410,7 @@ def checkLine(lineArr): #parse and organize data into JSON
                 compCourse["domain"] = domain
                 compCourse["ensemble"] = ensemble
                 compCourse["courseCode"] = courseCode
-                product["complementary"].append(compCourse)
+                product["COMPLEMENTARY"].append(compCourse)
                 compIndex += 1
 
         elif newCourseStatus == 1: #add lesson
@@ -424,7 +424,7 @@ def checkLine(lineArr): #parse and organize data into JSON
                 compCourse["domain"] = domain
                 compCourse["ensemble"] = ensemble
                 compCourse["courseCode"] = courseCode
-                product["complementary"].append(compCourse)
+                product["COMPLEMENTARY"].append(compCourse)
                 compIndex += 1
 
         elif teacherQ == 0:
@@ -435,7 +435,7 @@ def checkLine(lineArr): #parse and organize data into JSON
             teacherList = addTeacherList(teacherList, teacher)
 
             if complementary:
-                product["complementary"][compIndex]["teacher"] = teacher
+                product["COMPLEMENTARY"][compIndex]["teacher"] = teacher
         
         elif teacherQ == 1:
             previousStatus = "lab"
@@ -448,8 +448,8 @@ def checkLine(lineArr): #parse and organize data into JSON
         else:
 
             if complementary:
-                if "complementary" not in product.keys():
-                    product["complementary"] = []
+                if "COMPLEMENTARY" not in product.keys():
+                    product["COMPLEMENTARY"] = []
 
                 if isDomain(newLine):
                     previousStatus = "domain"
@@ -466,7 +466,7 @@ def checkLine(lineArr): #parse and organize data into JSON
                 product[courseCode][courseIndex]["details"]["fee"] = fee
 
                 if complementary:
-                    product["complementary"][compIndex]["details"]["fee"] = fee
+                    product["COMPLEMENTARY"][compIndex]["details"]["fee"] = fee
             
             if isRestriction(newLine):
                 previousStatus = "restriction"
@@ -474,7 +474,7 @@ def checkLine(lineArr): #parse and organize data into JSON
                 product[courseCode][courseIndex]["details"]["restrict"] = restriction
 
                 if complementary:
-                    product["complementary"][compIndex]["details"]["restrict"] = restriction
+                    product["COMPLEMENTARY"][compIndex]["details"]["restrict"] = restriction
 
             if isExclusive(newLine):
                 previousStatus = "exclusive"
@@ -482,7 +482,7 @@ def checkLine(lineArr): #parse and organize data into JSON
                 product[courseCode][courseIndex]["details"]["exclusive"] = exclusive
 
                 if complementary:
-                    product["complementary"][compIndex]["details"]["exclusive"] = exclusive
+                    product["COMPLEMENTARY"][compIndex]["details"]["exclusive"] = exclusive
 
             if isIntensive(newLine):
                 previousStatus = "intensive"
@@ -490,7 +490,7 @@ def checkLine(lineArr): #parse and organize data into JSON
                 product[courseCode][courseIndex]["details"]["intensive"] = intensive
 
                 if complementary:
-                    product["complementary"][compIndex]["details"]["intensive"] = intensive
+                    product["COMPLEMENTARY"][compIndex]["details"]["intensive"] = intensive
             
             elif previousStatus == "intensive":
 
@@ -502,7 +502,7 @@ def checkLine(lineArr): #parse and organize data into JSON
                     product[courseCode][courseIndex]["details"]["intensive"] += intensive
 
                     if complementary:
-                        product["complementary"][compIndex]["details"]["intensive"] += intensive
+                        product["COMPLEMENTARY"][compIndex]["details"]["intensive"] += intensive
 
             if previousStatus == "lesson":
                 extraTitle = addExtraTitle(newLine)
@@ -510,7 +510,7 @@ def checkLine(lineArr): #parse and organize data into JSON
                 product[courseCode][courseIndex]["title"] += extraTitle
 
                 if complementary:
-                    product["complementary"][compIndex]["title"] += extraTitle
+                    product["COMPLEMENTARY"][compIndex]["title"] += extraTitle
 
         if re.match("[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]", newLine[-1]): 
             scheduleDir = product[courseCode][courseIndex]["schedule"]
@@ -519,8 +519,8 @@ def checkLine(lineArr): #parse and organize data into JSON
             product[courseCode][courseIndex]["schedule"] = timeFormat(days, time, scheduleDir)
 
             if complementary:
-                scheduleDir = product["complementary"][compIndex]["schedule"]
-                product["complementary"][compIndex]["schedule"] = timeFormat(days, time, scheduleDir)
+                scheduleDir = product["COMPLEMENTARY"][compIndex]["schedule"]
+                product["COMPLEMENTARY"][compIndex]["schedule"] = timeFormat(days, time, scheduleDir)
     
     return [product, teacherList]
 
