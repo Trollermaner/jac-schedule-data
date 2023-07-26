@@ -5,15 +5,29 @@ from time import perf_counter
 startProgram = perf_counter()
 #teacherData = open("./dataCollector/results/results_no_rating.json", "r")
 #ratingData = open("./dataCollector/results/teacher_id.json", "r")
-pdfData = pdfplumber.open("./dataCollector/data/classData.pdf")
+pdfData = pdfplumber.open("./data/F23_JAC_June.pdf")
+
+with open("./data/dawson.html", "r") as dawson_html:
+    dawson_data1 = dawson_html.read()
+with open("./data/dawson_complementary.html", "r") as dawson_complementary:
+    dawson_data2 = dawson_complementary.read()
+
+from dawsonToJSON import parseDawson
 
 from async_rating import asyncGetRating
 from pdfToJSON import parseClassData
 
 import json
 
+school = input("school? (jac or dawson)")
+
+if school == "jac":
+    classData = parseClassData(pdfData)
+
+else:
+    classData = parseDawson(dawson_data1, dawson_data2)
+
 startParse = perf_counter()
-classData = parseClassData(pdfData)
 stopParse = perf_counter()
 
 print(f"Time to parse: {stopParse - startParse} seconds")
@@ -21,8 +35,9 @@ print(f"Time to parse: {stopParse - startParse} seconds")
 teacherData = classData[0]
 teacherList = classData[1]
 
+school_id_dict = {"jac": "U2Nob29sLTEyMDUw", "dawson": "U2Nob29sLTEyMDQ0"}
 
-school_id = "U2Nob29sLTEyMDUw"
+school_id = school_id_dict[school]
 
 startRating = perf_counter()
 ratingData = asyncio.run(asyncGetRating(school_id, teacherList))
@@ -67,5 +82,10 @@ for course in teacher_json.keys():
 endProgram = perf_counter()
 print(f"Time to run program: {endProgram - startProgram} seconds")
 
-with open("./dataCollector/results/final_results.json", "w") as results_json:
-    results_json.write(json.dumps(teacher_json, indent=4))
+if school == "jac":
+    with open("./results/final_results.json", "w") as results_json:
+        results_json.write(json.dumps(teacher_json, indent=4))
+
+elif school == "dawson":
+    with open("./results/dawson.json", "w") as results_json:
+        results_json.write(json.dumps(teacher_json, indent=4))

@@ -128,5 +128,5 @@ stop = perf_counter()
 
 print("time taken:", stop - start)
 
-with open("./dataCollector/results/teacher_id.json", "w") as teacherIdFile:
+with open("./results/teacher_id.json", "w") as teacherIdFile:
    teacherIdFile.write(teacherRating_json)

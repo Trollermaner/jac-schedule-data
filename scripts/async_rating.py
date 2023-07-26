@@ -27,8 +27,13 @@ async def getRating(s, id):
 
     async with s.post('https://www.ratemyprofessors.com/graphql', headers=headers, json=json_data) as r:
         if r.status != 200:
-            print(id)
-
+            async with s.post('https://www.ratemyprofessors.com/graphql', headers=headers, json=json_data) as r:
+                if r.status != 200:
+                    async with s.post('https://www.ratemyprofessors.com/graphql', headers=headers, json=json_data) as r:
+                        if r.status != 200:
+                            print("L NOT RATIoooo")
+                        return await r.json()
+                return await r.json()
         return await r.json()
 
 async def getRequest(s, teacher, school_id):
@@ -54,7 +59,14 @@ async def getRequest(s, teacher, school_id):
 
     async with s.post('https://www.ratemyprofessors.com/graphql', headers=headers, json=json_data) as r:
         if r.status != 200:
-            print(teacher)
+            async with s.post('https://www.ratemyprofessors.com/graphql', headers=headers, json=json_data) as r:
+                if r.status != 200:
+                    async with s.post('https://www.ratemyprofessors.com/graphql', headers=headers, json=json_data) as r:
+                        if r.status != 200:
+                            print("L ratio")
+                        return await r.json()
+                    
+                return await r.json()
         return await r.json()
 
 def teacherMatch(first_name, last_name, school_id, node):
@@ -89,7 +101,6 @@ async def getTasks(session, school_id, teacherList):
 
     for data in response:
         teacher = teacherList[num]
-
         if len(data["data"]["search"]["teachers"]["edges"]) != 0:
             teacher_node = data["data"]["search"]["teachers"]["edges"][0]["node"]
             teacherName = teacher.split(" ")

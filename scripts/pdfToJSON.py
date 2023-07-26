@@ -2,8 +2,6 @@ import pdfplumber
 import re
 import json
 
-classData = pdfplumber.open("./dataCollector/data/classData.pdf")
-
 class detailsClass:
 
     def __init__(self, fee = "", program_restriction = "", blended = "", intensive = "", notes = ""):
@@ -267,7 +265,7 @@ def getRestriction(line):
         student.append(word)
 
 def isExclusive(line):
-    if line[-1] == "only" or line[-1] == "only.":
+    if ((line[0] == "For" and "students" in line) and line[1] != "students" and line[1] != "returning" or (line[0] == "For" and line[1] == "Honours") and ("others" not in line or "others," not in line)):
         return True
 
     return False
@@ -285,6 +283,9 @@ def getExclusive(line):
             return programWord
 
         program.append(word)
+
+    programWord = " ".join(program)
+    return programWord
 
 def isIntensive(line):
     if "Intensive" in line or "intensive" in line:
@@ -542,7 +543,8 @@ def parseClassData(pdf): #returns array: index[0] = JSON, index[1] = list of tea
     return [product, teacherList, text]
 
 if False:
-    with open("./dataCollector/results/text.txt", "w") as textFile:
-        textFile.write(parseClassData(classData)[2])
+    with open("./results/results_no_rating.json", "w") as textFile:
+        with pdfplumber.open("./data/F23_JAC_June.pdf") as classData:
+            textFile.write(json.dumps(parseClassData(classData)[0], indent=4))
 
 
